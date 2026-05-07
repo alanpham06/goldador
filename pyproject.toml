@@ -37,6 +37,7 @@ lint = "meta.linter:main"
 sync-codeowners = "meta.synchronizers.src.codeowners:main"
 sync-slack = "meta.synchronizers.src.slack:main"
 sync-infra = "meta.synchronizers.src.infra:main"
+sync-google-drive = "meta.synchronizers.src.google_drive:main"
 
 [tool.ruff]
 lint.select = ["ALL"]
