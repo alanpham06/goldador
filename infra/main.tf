@@ -65,3 +65,10 @@ module "github" {
   github_usernames = local.github_usernames
   teams            = local.teams
 }
+
+module "google_group" {
+  source = "./google_group"
+
+  # Credentials
+  google_credentials_json = var.google_credentials_json
+}

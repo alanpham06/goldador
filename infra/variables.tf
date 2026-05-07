@@ -81,3 +81,9 @@ variable "slack_client_secret" {
   type        = string
   sensitive   = true
 }
+
+variable "google_credentials_json" {
+  description = "Google credentials JSON"
+  type        = string
+  sensitive   = true
+}
