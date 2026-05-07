@@ -64,20 +64,31 @@ class GoogleGroupSynchronizer(AbstractSynchronizer):
     @override
     def sync(self) -> None:
         print_section("Syncing Google Group")
-        members = self.get_member_roles()
+        group_resource_name = self.memberships_parent(self.GOOGLE_GROUP_KEY)
+        self.logger.info(
+            "Group resource name groups/{group_id} "
+            "(Terraform id; memberships parent): %s",
+            group_resource_name,
+        )
+        members = self.get_member_roles(parent=group_resource_name)
         self.logger.info("%s", members)
 
     def get_member_roles(
         self,
+        *,
+        parent: str | None = None,
     ) -> dict[str, list[str]]:
-        """Create a mapping of Google Group member emails to their roles."""
-        parent = self.memberships_parent(self.GOOGLE_GROUP_KEY)
+        """Create a mapping of Google Group member emails to their roles.
+
+        ``parent`` is the group resource name ``groups/{group_id}`` (Cloud Identity).
+        """
+        resolved_parent = parent or self.memberships_parent(self.GOOGLE_GROUP_KEY)
         items = []
         request = (
             self.service.groups()
             .memberships()
             .list(
-                parent=parent,
+                parent=resolved_parent,
                 view="FULL",
                 pageSize=200,
             )
@@ -95,7 +106,11 @@ class GoogleGroupSynchronizer(AbstractSynchronizer):
         return result
 
     def memberships_parent(self, group_key: str) -> str:
-        """Resolve ``groups/{{id}}`` parent for memberships."""
+        """Return the group resource name ``groups/{group_id}`` for memberships APIs.
+
+        ``name`` from ``groups.lookup``: resource name of the group, where ``group_id``
+        is the unique ID assigned to the group (not the email ``group_key``).
+        """
         result = (
             self.service.groups().lookup(groupKey_id=group_key).execute(num_retries=2)
         )
