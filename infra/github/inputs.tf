@@ -10,7 +10,7 @@ variable "github_token" {
   sensitive   = true
 }
 
-variable "members_data" {
+variable "github_usernames" {
   description = "Members data"
   type = object({
     admins     = list(string)
@@ -18,7 +18,7 @@ variable "members_data" {
   })
 }
 
-variable "teams_data" {
+variable "teams" {
   description = "Teams data"
   type = map(object({
     name        = string

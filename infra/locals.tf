@@ -1,7 +1,8 @@
 locals {
-  inputs_data               = jsondecode(file("inputs.json"))
-  members_data              = local.inputs_data["members"]
-  teams_data                = local.inputs_data["teams"]
-  leadership_team_data      = local.teams_data["leadership"]
-  non_leadership_teams_data = { for k, v in local.teams_data : k => v if k != "leadership" }
+  inputs_data          = jsondecode(file("inputs.json"))
+  github_usernames     = local.inputs_data["github_usernames"]
+  andrew_ids           = local.inputs_data["andrew_ids"]
+  teams                = local.inputs_data["teams"]
+  leadership_team      = local.teams["leadership"]
+  non_leadership_teams = { for k, v in local.teams : k => v if k != "leadership" }
 }

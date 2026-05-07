@@ -3,14 +3,14 @@
 # The member team has write permission on the team repositories.
 
 resource "github_team" "teams" {
-  for_each    = var.teams_data
+  for_each    = var.teams
   name        = each.value.name
   description = each.value.description
   privacy     = "closed" # Visible to all members of the organization
 }
 
 resource "github_team" "admin_teams" {
-  for_each       = var.teams_data
+  for_each       = var.teams
   name           = "${each.value.name} Admins"
   privacy        = "closed" # Visible to all members of the organization
   parent_team_id = github_team.teams[each.key].id
@@ -19,7 +19,7 @@ resource "github_team" "admin_teams" {
 # Team repositories
 locals {
   team_repositories = merge([
-    for team_slug, team in var.teams_data : {
+    for team_slug, team in var.teams : {
       for repo in team.repos :
       "${team_slug}:${repo}" => {
         team_slug = team_slug
@@ -46,7 +46,7 @@ resource "github_team_repository" "team_admin_repositories" {
 # Team memberships
 locals {
   team_member_memberships = merge([
-    for team_slug, team in var.teams_data : {
+    for team_slug, team in var.teams : {
       for username in team.members.github_usernames :
       "${team_slug}:${username}" => {
         team_slug = team_slug
@@ -56,7 +56,7 @@ locals {
   ]...)
 
   team_admin_memberships = merge([
-    for team_slug, team in var.teams_data : {
+    for team_slug, team in var.teams : {
       for username in team.admins.github_usernames :
       "${team_slug}:${username}" => {
         team_slug = team_slug
