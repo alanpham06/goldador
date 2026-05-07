@@ -21,6 +21,7 @@ from googleapiclient.discovery import build  # type: ignore[import-untyped]
 
 from meta.logger import log_operation, print_section
 
+from ._constants import LEADERSHIP
 from .abstract import AbstractSynchronizer
 
 
@@ -130,11 +131,8 @@ class GoogleDriveSynchronizer(AbstractSynchronizer):
         permissions: dict[str, str],
     ) -> list[str]:
         """Get the new admin email addresses."""
-        if "leadership" not in self.teams:
-            return []
-
         new_email_addresses = []
-        for github_username in self.teams["leadership"].leads:
+        for github_username in self.teams[LEADERSHIP].leads:
             admin = self.members[github_username]
             if admin.andrew_id is None:
                 continue

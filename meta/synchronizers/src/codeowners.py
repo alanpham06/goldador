@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from meta.clients.github_client import create_or_update_github_file
 from meta.logger import print_section
 
+from ._constants import LEADERSHIP
 from .abstract import AbstractSynchronizer
 
 if TYPE_CHECKING:
@@ -15,6 +16,8 @@ if TYPE_CHECKING:
 
 class CodeownersSynchronizer(AbstractSynchronizer):
     """Codeowners synchronizer."""
+
+    GOLDADOR = "goldador"
 
     CODEOWNERS_FILE_PATH = ".github/CODEOWNERS"
     COMMIT_MESSAGE = "chore: auto-update CODEOWNERS"
@@ -40,22 +43,12 @@ class CodeownersSynchronizer(AbstractSynchronizer):
         lines = [f"# Auto-generated CODEOWNERS file from {self.FILE_PATH}"]
         lines.append("")
 
-        if "goldador" not in self.teams:
-            msg = "Goldador team not found."
-            self.logger.critical(msg)
-            raise ValueError(msg)
-
-        goldador_team = self.teams["goldador"]
+        goldador_team = self.teams[self.GOLDADOR]
         lines.append("# Default owners are the Goldador team leads")
         lines.append(f"*{self._get_team_leads_pattern(goldador_team)}")
         lines.append("")
 
-        if "leadership" not in self.teams:
-            msg = "Leadership team not found."
-            self.logger.critical(msg)
-            raise ValueError(msg)
-
-        leadership_team = self.teams["leadership"]
+        leadership_team = self.teams[LEADERSHIP]
         lines.append(
             "# Owners of the `teams/` directory are the leadership team leads",
         )

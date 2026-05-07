@@ -16,6 +16,7 @@ from meta.logger import (
     print_section,
 )
 
+from ._constants import LEADERSHIP
 from .abstract import AbstractSynchronizer
 
 if TYPE_CHECKING:
@@ -52,7 +53,7 @@ class SlackSynchronizer(AbstractSynchronizer):
 
         for team_slug, team in self.teams.items():
             # Leadership Slack channel is private and not managed by Goldador
-            if team_slug == "leadership":
+            if team_slug == LEADERSHIP:
                 continue
             self.sync_team(team_slug, team)
 
