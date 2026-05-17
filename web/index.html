@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Goldador — Labrador access &amp; membership</title>
+    <meta
+      name="description"
+      content="How the ScottyLabs Labrador committee keeps membership and permissions organized—and how to register."
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f8f6f3;
+        --fg: #1a1714;
+        --muted: #5c574f;
+        --accent: #2d6a4f;
+        --accent-hover: #1b4332;
+        --card: #ffffff;
+        --border: #e6e2db;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #12110f;
+          --fg: #f2ebe3;
+          --muted: #b8aea2;
+          --accent: #6bbf8c;
+          --accent-hover: #95d9b3;
+          --card: #1c1a17;
+          --border: #3a3630;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.125rem;
+        line-height: 1.65;
+        color: var(--fg);
+        background: var(--bg);
+      }
+      .wrap {
+        max-width: 40rem;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 4rem;
+      }
+      header h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        margin: 0 0 0.25rem;
+        line-height: 1.2;
+      }
+      header p.tagline {
+        margin: 0;
+        font-size: 1rem;
+        color: var(--muted);
+      }
+      main {
+        margin-top: 2.25rem;
+      }
+      section {
+        margin-bottom: 2rem;
+      }
+      section h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+        margin: 0 0 0.65rem;
+      }
+      section p {
+        margin: 0 0 0.85rem;
+      }
+      section p:last-child {
+        margin-bottom: 0;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.35rem 1.5rem;
+        margin-top: 1.75rem;
+      }
+      .card p {
+        margin-bottom: 1rem;
+      }
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+      .cta {
+        display: inline-block;
+        margin-top: 0.35rem;
+        padding: 0.65rem 1.25rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fff !important;
+        background: var(--accent);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: background 0.15s ease;
+      }
+      .cta:hover,
+      .cta:focus-visible {
+        background: var(--accent-hover);
+      }
+      footer {
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--border);
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      footer a {
+        color: var(--accent);
+      }
+      a:not(.cta) {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <h1>Goldador</h1>
+        <p class="tagline">Membership &amp; access for the Labrador committee (ScottyLabs)</p>
+      </header>
+
+      <main>
+        <section aria-labelledby="what-heading">
+          <h2 id="what-heading">What this is</h2>
+          <p>
+            <strong>Goldador</strong> is the home for how the <strong>Labrador</strong> committee
+            tracks who belongs to the group and what they are allowed to use—things like GitHub org
+            membership, shared drives, and team channels. Rather than juggling one-off emails or informal
+            lists, Labrador keeps that information organized in one trusted place so access can stay clear
+            and consistent.
+          </p>
+        </section>
+
+        <section aria-labelledby="why-heading">
+          <h2 id="why-heading">Why it matters</h2>
+          <p>
+            When onboarding is predictable, people get the tools they need sooner, and the committee can
+            be confident permissions match who is officially on record. Automated checks behind the scenes
+            help catch mistakes early so registrations stay tidy.
+          </p>
+        </section>
+
+        <div class="card" role="region" aria-labelledby="register-heading">
+          <h2 id="register-heading" style="margin-top: 0">How to register</h2>
+          <p>
+            If you want to join or update your Labrador access, step-by-step instructions—including
+            prerequisites, what to submit, and how approvals work—are in the project wiki.
+          </p>
+          <p>
+            <a class="cta" href="https://github.com/scottylabs-labrador/goldador/wiki">
+              Open the Goldador Wiki (registration guide)
+            </a>
+          </p>
+          <p>
+            Prefer the code view? You can always browse the
+            <a href="https://github.com/scottylabs-labrador/goldador">Goldador repository on GitHub</a>.
+          </p>
+        </div>
+      </main>
+
+      <footer>
+        ScottyLabs Labrador · This page is plain HTML for sharing with collaborators who aren’t diving into
+        the repository itself.
+      </footer>
+    </div>
+  </body>
+</html>
