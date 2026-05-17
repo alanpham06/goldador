@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import asyncio
-import sys
 from http import HTTPStatus
 from typing import TYPE_CHECKING
 
@@ -47,13 +46,15 @@ class TeamValidator:
         self.reporter = reporter
         self.logger = get_app_logger()
 
-    def validate(self) -> None:
+    def validate(self, *, exit_on_fatal: bool = True) -> None:
         """Validate all teams (checks ordered per team; teams run in parallel)."""
         try:
             asyncio.run(self._validate_async())
         except TeamValidationError as e:
             self.logger.exception(e.message)
-            sys.exit(1)
+            if exit_on_fatal:
+                raise SystemExit(1) from e
+            raise
 
     async def _validate_async(self) -> None:
         """Validate each team concurrently using a shared async HTTP client scope."""
