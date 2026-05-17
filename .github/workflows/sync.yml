@@ -27,7 +27,6 @@ jobs:
               - 'members/**'
               - 'teams/**'
               - 'meta/clients/**'
-              - 'meta/linter/**'
               - 'meta/loaders/**'
               - 'meta/logger/**'
               - 'meta/models/**'
