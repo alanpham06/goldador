@@ -200,7 +200,8 @@
         margin: 0;
         font-size: clamp(2.6rem, 5.2vw, 4rem);
         font-weight: 750;
-        letter-spacing: -0.08em;
+        line-height: 1.16;
+        letter-spacing: -0.045em;
       }
 
       .hero-copy {
@@ -327,6 +328,10 @@
         font-size: 1.3rem;
       }
 
+      .role-card h3 + ul {
+        margin-top: 1rem;
+      }
+
       .role-card .summary {
         margin: 0.5rem 0 1rem;
         color: var(--muted);
@@ -449,7 +454,12 @@
   <body>
     <div class="page">
       <nav class="nav" aria-label="Primary navigation">
-        <a class="brand" href="https://scottylabs-labrador.github.io/goldador/">
+        <a
+          class="brand"
+          href="https://scottylabs-labrador.github.io/goldador/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <span class="brand-mark" aria-hidden="true">G</span>
           <span>
             <strong class="brand-name">Goldador</strong>
@@ -464,61 +474,98 @@
             <h1 id="hero-heading">Goldador - ScottyLabs<br />Labrador Governance</h1>
             <p class="hero-copy">
               Goldador is the shared source of truth for Labrador membership, team access, and
-              leadership permissions. Use this page to understand what access each role receives
-              before you register or update your record.
+              leadership permissions. Use this page to understand what access each role receives and
+              learn how to register yourself as a member or add yourself to a team.
             </p>
             <div class="hero-actions">
-              <a class="button" href="#register">
+              <a class="button" href="#register" target="_blank" rel="noopener noreferrer">
                 Register or update access
               </a>
-              <a class="button secondary" href="#permissions">Compare roles</a>
+              <a class="button secondary" href="#permissions" target="_blank" rel="noopener noreferrer">
+                Compare roles
+              </a>
             </div>
           </div>
 
           <aside class="hero-panel" aria-labelledby="services-heading">
             <div>
-              <h2 id="services-heading">Connected resources</h2>
-              <p>
-                These are the user-facing resources Goldador helps keep in sync for Labrador.
-              </p>
+              <h2 id="services-heading">Resources</h2>
               <div class="service-guide">
-                <h3>What to use each resource for</h3>
                 <dl>
                   <div>
                     <dt>
-                      <a href="https://github.com/ScottyLabs-Labrador">GitHub</a>
+                      <a
+                        href="https://github.com/ScottyLabs-Labrador"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GitHub
+                      </a>
                     </dt>
-                    <dd>Code repositories, project teams, reviews, and issue tracking.</dd>
+                    <dd>Code repositories, teams, and issue tracking.</dd>
                   </div>
                   <div>
                     <dt>
-                      <a href="https://drive.google.com/drive/folders/0AGTPPYnbmAAzUk9PVA">
+                      <a
+                        href="https://drive.google.com/drive/folders/0AGTPPYnbmAAzUk9PVA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Google Drive
                       </a>
                     </dt>
-                    <dd>Shared planning documents, handoff notes, and team files.</dd>
+                    <dd>Shared planning and meeting documents.</dd>
                   </div>
                   <div>
                     <dt>
-                      <a href="https://idp.scottylabs.org/realms/labrador/account/account-security/linked-accounts">
+                      <a
+                        href="https://groups.google.com/a/andrew.cmu.edu/g/sl-labrador"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Google Group
+                      </a>
+                    </dt>
+                    <dd>Receive committee-wide update emails.</dd>
+                  </div>
+                  <div>
+                    <dt>
+                      <a
+                        href="https://idp.scottylabs.org/realms/labrador/account/account-security/linked-accounts"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Keycloak
                       </a>
                     </dt>
-                    <dd>Labrador identity and app login access.</dd>
+                    <dd>
+                      Identity provider for authenticating and authorizing other resources and
+                      applications.
+                    </dd>
                   </div>
                   <div>
                     <dt>
-                      <a href="https://bao.scottylabs.org/">OpenBao</a>
-                    </dt>
-                    <dd>Project and committee secrets, scoped by role.</dd>
-                  </div>
-                  <div>
-                    <dt>
-                      <a href="https://github.com/scottylabs-labrador/wiki/wiki/Secret-Storage">
-                        Secret Storage
+                      <a
+                        href="https://github.com/scottylabs-labrador/wiki/wiki/Secret-Storage"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        OpenBao
                       </a>
                     </dt>
-                    <dd>Guidance for storing, rotating, and requesting secrets.</dd>
+                    <dd>Secrets storage.</dd>
+                  </div>
+                  <div>
+                    <dt>
+                      <a
+                        href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CODEOWNERS"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        CODEOWNERS
+                      </a>
+                    </dt>
+                    <dd>Review ownership of Goldador files.</dd>
                   </div>
                 </dl>
               </div>
@@ -529,17 +576,11 @@
         <section id="permissions" class="section" aria-labelledby="permissions-heading">
           <div class="section-heading">
             <h2 id="permissions-heading">Role Permissions</h2>
-            <p>
-              Roles build on each other. Team and leadership roles add project or committee access
-              on top of basic Labrador membership.
-            </p>
           </div>
 
           <div class="role-grid">
             <article class="role-card">
-              <span class="tag">Base access</span>
               <h3>Member</h3>
-              <p class="summary">For anyone officially registered as part of Labrador.</p>
               <ul>
                 <li>
                   GitHub organization <strong>member</strong> access.
@@ -552,16 +593,12 @@
             </article>
 
             <article class="role-card">
-              <span class="tag">Project access</span>
               <h3>Team Member</h3>
-              <p class="summary">For contributors listed on a Labrador project team.</p>
               <ul>
-                <li>Membership in the team’s GitHub team.</li>
+                <li><strong>Membership</strong> in the team’s GitHub team.</li>
                 <li><strong>Write</strong> access to the team’s GitHub repositories.</li>
-                <li>Membership in the team’s Slack channel.</li>
-                <li>
-                  Team app login through Keycloak.
-                </li>
+                <li><strong>Membership</strong> in the team’s Slack channel.</li>
+                <li>Keycloak project team <strong>member</strong> access.</li>
                 <li>
                   <strong>Read/list</strong> access to local project secrets in OpenBao.
                 </li>
@@ -569,15 +606,11 @@
             </article>
 
             <article class="role-card">
-              <span class="tag">Project admin</span>
               <h3>Team Lead</h3>
-              <p class="summary">For team leads responsible for project access and ownership.</p>
               <ul>
                 <li><strong>Admin</strong> access to the team’s GitHub repositories.</li>
-                <li>
-                  CODEOWNERS review ownership for the team’s Goldador team file, meaning team leads review
-                  membership and permission changes before they are applied.
-                </li>
+                <li><strong>Codeowners</strong> review ownership for the team’s Goldador team file.</li>
+                <li>Keycloak project team <strong>admin</strong> access.</li>
                 <li>
                   <strong>Create, read, update, delete, list, and sudo</strong> access to the
                   team’s project secrets in OpenBao.
@@ -586,42 +619,33 @@
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Committee access</span>
               <h3>Leadership Member</h3>
-              <p class="summary">For Labrador leadership members who need committee-wide visibility.</p>
               <ul>
                 <li>
                   Keycloak <strong>read-only</strong> access.
                 </li>
-                <li>
-                  Committee-wide <strong>create, read, update, delete, list, and sudo</strong>
-                  access to Labrador secrets in OpenBao.
-                </li>
+                <li><strong>Admin</strong> access to secrets in OpenBao.</li>
               </ul>
-              <p class="note">
-                Leadership membership is separate from project team leadership.
-              </p>
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Committee admin</span>
-              <h3>Leadership Lead/Admin</h3>
-              <p class="summary">For leadership leads who administer Labrador-wide access.</p>
+              <h3>Leadership Admins</h3>
               <ul>
                 <li>
                   GitHub organization <strong>admin</strong> access.
                 </li>
-                <li>ScottyLabs Google Group <strong>manager</strong> and <strong>member</strong> access.</li>
+                <li>ScottyLabs Google Group <strong>manager</strong> access.</li>
                 <li>
                   ScottyLabs Google Drive <strong>content manager</strong> access.
                 </li>
                 <li>
                   Keycloak <strong>admin</strong> access.
                 </li>
+                <li><strong>Admin</strong> access in OpenBao.</li>
                 <li>
-                  Admin-level secrets access in OpenBao.
+                  Default <strong>Codeowners</strong> review ownership for Goldador and the
+                  <code>teams/</code> directory.
                 </li>
-                <li>Default CODEOWNERS review ownership for Goldador and the <code>teams/</code> directory.</li>
               </ul>
             </article>
           </div>
@@ -630,67 +654,103 @@
         <section id="register" class="section" aria-labelledby="register-heading">
           <div class="section-heading">
             <h2 id="register-heading">Register or Update Access</h2>
-            <p>
-              Goldador changes happen through pull requests. Pick the smallest change that
-              represents the access you need, then let validation and review confirm it.
-            </p>
           </div>
 
           <div class="role-grid">
             <article class="role-card wide">
-              <span class="tag">Prerequisites</span>
+              <span class="tag">Step 1</span>
               <h3>Link Your Accounts</h3>
-              <p class="summary">
-                Goldador validates identity links before it grants Labrador access.
-              </p>
               <ul>
                 <li>
                   Create a
-                  <a href="https://idp.scottylabs.org/realms/labrador/account/account-security/linked-accounts">
+                  <a
+                    href="https://idp.scottylabs.org/realms/labrador/account/account-security/linked-accounts"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     Keycloak account
                   </a>.
                 </li>
-                <li>Link Keycloak to your GitHub account.</li>
-                <li>Link Keycloak to your Slack account.</li>
+                <li>Link your GitHub account to Keycloak.</li>
+                <li>Link your Slack account to Keycloak.</li>
               </ul>
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Setup</span>
+              <span class="tag">Step 2</span>
               <h3>Prepare a Pull Request</h3>
-              <p class="summary">
-                Work from your fork, then submit the change back to Goldador.
-              </p>
               <ul>
                 <li>
-                  <a href="https://github.com/scottylabs-labrador/goldador/fork">
-                    Fork the Goldador repository
-                  </a>.
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/fork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Fork
+                  </a>
+                  the Goldador
+                  repository.
                 </li>
                 <li>
                   Clone your fork locally, following the
-                  <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository">
+                  <a
+                    href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     GitHub cloning guide
                   </a>
                   if needed.
                 </li>
-                <li>Install the recommended editor extensions so TOML files auto-format.</li>
+                <li>
+                  Install the recommended extensions to auto-format the files.
+                  <ul>
+                    <li>
+                      Use the Command Palette (Command+Shift+P) and search for
+                      &quot;Extensions: Show Recommended Extensions&quot; to show the recommended
+                      extensions.
+                    </li>
+                    <li>
+                      See the &quot;Installing recommended extensions&quot; section in
+                      <a
+                        href="https://dev.to/askrishnapravin/recommend-vs-code-extensions-to-your-future-teammates-4gkb"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        this article
+                      </a>
+                      for a GIF showing how to install recommended extensions.
+                    </li>
+                    <li>
+                      See
+                      <a
+                        href="https://code.visualstudio.com/docs/configure/extensions/extension-marketplace#_recommended-extensions"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        VSCode Extensions documentation
+                      </a>
+                      for more details.
+                    </li>
+                  </ul>
+                </li>
               </ul>
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Members</span>
+              <span class="tag">Step 3</span>
               <h3>Join Labrador</h3>
-              <p class="summary">
-                Add yourself as a member before you are listed on a project team.
-              </p>
               <ul>
                 <li>Create <code>members/&lt;github-username&gt;.toml</code>.</li>
                 <li>Add your full name and Andrew ID.</li>
                 <li>Submit the pull request from your own GitHub account.</li>
                 <li>
                   Follow the
-                  <a href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/member.md">
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/member.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     member schema documentation
                   </a>
                   for field details.
@@ -699,20 +759,21 @@
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Teams</span>
+              <span class="tag">Step 4</span>
               <h3>Join or Register a Team</h3>
-              <p class="summary">
-                Team leads maintain the project record that drives repository, Slack, identity,
-                and secrets access. Members can join one team per pull request.
-              </p>
               <ul>
-                <li>Add yourself to the team you want to join in <code>teams/</code>.</li>
-                <li>Team leads can create or update <code>teams/&lt;team-slug&gt;.toml</code>.</li>
-                <li>Use a short, lowercase, hyphen-separated slug for new teams.</li>
-                <li>List leads, members, repositories, and app URLs when they are ready.</li>
+                <li>
+                  If you are a team lead, create or update <code>teams/&lt;team-slug&gt;.toml</code>.
+                  Otherwise, wait for your team lead to create the team TOML before adding yourself under
+                  <code>teams/</code>.
+                </li>
                 <li>
                   Follow the
-                  <a href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/team.md">
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/team.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     team schema documentation
                   </a>
                   for field details.
@@ -721,11 +782,8 @@
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Validation</span>
+              <span class="tag">Step 5</span>
               <h3>Pass the Checks</h3>
-              <p class="summary">
-                CI validates formatting, schemas, and Goldador's access rules before review.
-              </p>
               <ul>
                 <li>Member and team TOML must match the published schema.</li>
                 <li>New team members must already exist in <code>members/</code>.</li>
@@ -736,7 +794,11 @@
                 </li>
                 <li>
                   See the
-                  <a href="https://github.com/scottylabs-labrador/goldador/tree/main/meta/validator">
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/tree/main/meta/validator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     validator documentation
                   </a>
                   for local validation details.
@@ -745,16 +807,17 @@
             </article>
 
             <article class="role-card wide">
-              <span class="tag">Review</span>
+              <span class="tag">Step 6</span>
               <h3>Review and Merge</h3>
-              <p class="summary">
-                Maintainers and CODEOWNERS review access changes before they become active.
-              </p>
               <ul>
                 <li>
-                  Reviewers are requested automatically from the
-                  <a href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CODEOWNERS">
-                    CODEOWNERS file
+                  Reviewers are requested automatically using the
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CODEOWNERS"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Codeowners file
                   </a>.
                 </li>
                 <li>A reviewer may convert the pull request to draft while changes are needed.</li>
@@ -778,7 +841,12 @@
                 request for review.
               </p>
             </div>
-            <a class="button" href="https://github.com/scottylabs-labrador/goldador">
+            <a
+              class="button"
+              href="https://github.com/scottylabs-labrador/goldador"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Open the Goldador Repository
             </a>
           </section>
@@ -788,7 +856,13 @@
       <footer>
         <span>ScottyLabs Labrador · Goldador</span>
         <span>
-          <a href="https://github.com/scottylabs-labrador/goldador">Repository</a>
+          <a
+            href="https://github.com/scottylabs-labrador/goldador"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Repository
+          </a>
         </span>
       </footer>
     </div>
