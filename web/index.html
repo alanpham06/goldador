@@ -678,7 +678,7 @@
 
             <article class="role-card wide">
               <span class="tag">Step 2</span>
-              <h3>Prepare a Pull Request</h3>
+              <h3>Set Up Your Fork</h3>
               <ul>
                 <li>
                   <a
@@ -688,147 +688,92 @@
                   >
                     Fork
                   </a>
-                  the Goldador
-                  repository.
-                </li>
-                <li>
-                  Clone your fork locally, following the
-                  <a
+                  the Goldador repository, then clone your fork
+                  (<a
                     href="https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository"
                     target="_blank"
                     rel="noopener noreferrer"
-                  >
-                    GitHub cloning guide
-                  </a>
-                  if needed.
+                  >GitHub cloning guide</a>).
                 </li>
                 <li>
-                  Install the recommended extensions to auto-format the files.
-                  <ul>
-                    <li>
-                      Use the Command Palette (Command+Shift+P) and search for
-                      &quot;Extensions: Show Recommended Extensions&quot; to show the recommended
-                      extensions.
-                    </li>
-                    <li>
-                      See the &quot;Installing recommended extensions&quot; section in
-                      <a
-                        href="https://dev.to/askrishnapravin/recommend-vs-code-extensions-to-your-future-teammates-4gkb"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        this article
-                      </a>
-                      for a GIF showing how to install recommended extensions.
-                    </li>
-                    <li>
-                      See
-                      <a
-                        href="https://code.visualstudio.com/docs/configure/extensions/extension-marketplace#_recommended-extensions"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        VSCode Extensions documentation
-                      </a>
-                      for more details.
-                    </li>
-                  </ul>
+                  Install the recommended VS Code extensions to auto-format files
+                  (see
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CONTRIBUTING.md#editor-setup"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CONTRIBUTING.md
+                  </a>).
                 </li>
+                <li>Open the repo in your editor and confirm formatters apply on save.</li>
               </ul>
             </article>
 
             <article class="role-card wide">
               <span class="tag">Step 3</span>
-              <h3>Join Labrador</h3>
+              <h3>Add Yourself</h3>
               <ul>
-                <li>Create <code>members/&lt;github-username&gt;.toml</code>.</li>
-                <li>Add your full name and Andrew ID.</li>
-                <li>Submit the pull request from your own GitHub account.</li>
                 <li>
-                  Follow the
-                  <a
+                  Create your member file <code>members/&lt;github-username&gt;.toml</code>
+                  (<a
                     href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/member.md"
                     target="_blank"
                     rel="noopener noreferrer"
-                  >
-                    member schema documentation
-                  </a>
-                  for field details.
+                  >member schema</a>).
+                </li>
+                <li>
+                  Add yourself to your team in <code>teams/&lt;slug&gt;.toml</code>; team leads create
+                  or update the team file
+                  (<a
+                    href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/team.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >team schema</a>).
+                </li>
+                <li>
+                  One change per PR: add yourself as a member, or join/create one team &mdash; not
+                  both in the same PR.
                 </li>
               </ul>
             </article>
 
             <article class="role-card wide">
               <span class="tag">Step 4</span>
-              <h3>Join or Register a Team</h3>
+              <h3>Open a PR for Review</h3>
               <ul>
                 <li>
-                  If you are a team lead, create or update <code>teams/&lt;team-slug&gt;.toml</code>.
-                  Otherwise, wait for your team lead to create the team TOML before adding yourself under
-                  <code>teams/</code>.
+                  Open a PR from your fork to <code>main</code> and submit it from your own GitHub
+                  account.
                 </li>
                 <li>
-                  Follow the
-                  <a
-                    href="https://github.com/scottylabs-labrador/goldador/blob/main/docs/schemas/team.md"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    team schema documentation
-                  </a>
-                  for field details.
-                </li>
-              </ul>
-            </article>
-
-            <article class="role-card wide">
-              <span class="tag">Step 5</span>
-              <h3>Pass the Checks</h3>
-              <ul>
-                <li>Member and team TOML must match the published schema.</li>
-                <li>New team members must already exist in <code>members/</code>.</li>
-                <li>Keep each pull request focused on one member or one team change.</li>
-                <li>
-                  A reviewer approves CI after checking that the pull request contains no
-                  malicious code.
-                </li>
-                <li>
-                  See the
-                  <a
-                    href="https://github.com/scottylabs-labrador/goldador/tree/main/meta/validator"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    validator documentation
-                  </a>
-                  for local validation details.
-                </li>
-              </ul>
-            </article>
-
-            <article class="role-card wide">
-              <span class="tag">Step 6</span>
-              <h3>Review and Merge</h3>
-              <ul>
-                <li>
-                  Reviewers are requested automatically using the
                   <a
                     href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CODEOWNERS"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Codeowners file
-                  </a>.
+                    CODEOWNERS
+                  </a>
+                  auto-requests reviewers; CI must pass before merge (see
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/tree/main/meta/validator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    validator README
+                  </a>
+                  for what&rsquo;s checked).
                 </li>
-                <li>A reviewer may convert the pull request to draft while changes are needed.</li>
-                <li>Address reviewer comments, keep the branch up to date, and mark it ready again.</li>
-                <li>Reviewers squash-merge approved pull requests after all checks pass.</li>
                 <li>
-                  Typical squash titles look like
-                  <code>feat(member): add Yuxiang to leadership team</code> or
-                  <code>feat(team): update description of leadership team</code>.
+                  Reviewers squash-merge approved PRs (full process in
+                  <a
+                    href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CONTRIBUTING.md#pr-review-process"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CONTRIBUTING.md
+                  </a>).
                 </li>
-                <li>After merge, synchronizers apply the approved access model.</li>
               </ul>
             </article>
           </div>
