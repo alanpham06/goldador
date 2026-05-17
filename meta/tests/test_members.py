@@ -7,8 +7,8 @@ from typing import TYPE_CHECKING
 import pytest
 
 from meta.loaders.members import load_members
-from meta.validator.src.members import MemberValidator
 from meta.validator.src.reporter import ErrorCode, Reporter, bind_reporter
+from meta.validator.src.rules.members import MemberValidator
 
 from .helper import has_error, no_errors
 from .mock_clients.mock_github_client import (
@@ -32,8 +32,8 @@ from .mock_clients.mock_keycloak_client import (
 if TYPE_CHECKING:
     from _pytest.monkeypatch import MonkeyPatch
 
-GITHUB_CLIENT_FUNCTION_PATH = "meta.validator.src.members.get_github_client"
-KEYCLOAK_CLIENT_FUNCTION_PATH = "meta.validator.src.members.get_keycloak_client"
+GITHUB_CLIENT_FUNCTION_PATH = "meta.validator.src.rules.members.get_github_client"
+KEYCLOAK_CLIENT_FUNCTION_PATH = "meta.validator.src.rules.members.get_keycloak_client"
 
 
 def test_member_valid(monkeypatch: MonkeyPatch) -> None:

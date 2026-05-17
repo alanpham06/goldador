@@ -48,3 +48,7 @@ lint.select = ["ALL"]
 [tool.mypy]
 strict = true
 explicit_package_bases = true
+
+[tool.coverage.report]
+fail_under = 100
+include = ["meta/validator/src/rules/*"]

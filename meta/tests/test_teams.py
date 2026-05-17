@@ -9,7 +9,7 @@ import pytest
 from meta.loaders.members import load_members
 from meta.loaders.teams import load_teams
 from meta.validator.src.reporter import ErrorCode, Reporter, bind_reporter
-from meta.validator.src.teams import TeamValidator
+from meta.validator.src.rules.teams import TeamValidator
 
 from .helper import has_error, no_errors
 from .mock_clients.mock_github_client import (
@@ -23,7 +23,7 @@ if TYPE_CHECKING:
     from _pytest.monkeypatch import MonkeyPatch
 
 MEMBERS_FOR_TEAMS = "meta/tests/members/for_teams/*.toml"
-GITHUB_CLIENT_FUNCTION_PATH = "meta.validator.src.teams.get_github_client"
+GITHUB_CLIENT_FUNCTION_PATH = "meta.validator.src.rules.teams.get_github_client"
 
 
 def test_team_valid(monkeypatch: MonkeyPatch) -> None:
