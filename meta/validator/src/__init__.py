@@ -12,6 +12,8 @@ from meta.validator.src.github_utils import (
     resolve_default_branch_head_sha,
 )
 from meta.validator.src.remote_validation import run_remote_validation
+from meta.validator.src.rules.members import MemberValidationError
+from meta.validator.src.rules.teams import TeamValidationError
 
 # ``sys.argv`` layout: script name, optional Git ref.
 _ARGV_SCRIPT_AND_REF = 2
@@ -28,12 +30,18 @@ def main() -> None:
     ref = _cli_ref(sys.argv)
 
     try:
-        reporter, extras = run_remote_validation(ref, exit_on_fatal=True)
+        reporter, extras = run_remote_validation(ref)
     except GoldadorGitHubError as e:
         logger.critical("%s", e.message)
         raise SystemExit(1) from e
     except RuntimeError as e:
         logger.critical("%s", e)
+        raise SystemExit(1) from e
+    except MemberValidationError as e:
+        logger.critical("%s", e.message)
+        raise SystemExit(1) from e
+    except TeamValidationError as e:
+        logger.critical("%s", e.message)
         raise SystemExit(1) from e
 
     logger.info(

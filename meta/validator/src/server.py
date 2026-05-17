@@ -46,7 +46,7 @@ class ValidateRequest(BaseModel):
 
 def run_validation_for_ref(ref: str) -> dict[str, Any]:
     """Fetch TOML from GitHub at ``ref`` and return structured validation results."""
-    reporter, extras = run_remote_validation(ref, exit_on_fatal=False)
+    reporter, extras = run_remote_validation(ref)
     return {**extras, "validation": reporter.as_result()}
 
 

@@ -46,14 +46,12 @@ class TeamValidator:
         self.reporter = reporter
         self.logger = get_app_logger()
 
-    def validate(self, *, exit_on_fatal: bool = True) -> None:
+    def validate(self) -> None:
         """Validate all teams (checks ordered per team; teams run in parallel)."""
         try:
             asyncio.run(self._validate_async())
         except TeamValidationError as e:
             self.logger.exception(e.message)
-            if exit_on_fatal:
-                raise SystemExit(1) from e
             raise
 
     async def _validate_async(self) -> None:

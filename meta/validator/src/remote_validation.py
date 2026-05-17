@@ -15,20 +15,16 @@ from meta.validator.src.rules.members import MemberValidator
 from meta.validator.src.rules.teams import TeamValidator
 
 
-def run_remote_validation(
-    ref: str,
-    *,
-    exit_on_fatal: bool,
-) -> tuple[Reporter, dict[str, Any]]:
+def run_remote_validation(ref: str) -> tuple[Reporter, dict[str, Any]]:
     """Load TOML at ``ref`` from GitHub, run validators, return reporter + metadata."""
     reporter = Reporter()
     record = bind_reporter(reporter)
     member_tomls, team_tomls = fetch_goldador_toml_at_ref(ref)
     members = load_members(record, file_contents=member_tomls)
-    MemberValidator(members, reporter).validate(exit_on_fatal=exit_on_fatal)
+    MemberValidator(members, reporter).validate()
 
     teams = load_teams(record, file_contents=team_tomls)
-    TeamValidator(teams, members, reporter).validate(exit_on_fatal=exit_on_fatal)
+    TeamValidator(teams, members, reporter).validate()
 
     extras: dict[str, Any] = {
         "repository": GOLDADOR_REPO_FULL_NAME,
