@@ -135,7 +135,7 @@ def run_validation_for_ref(ref: str) -> dict[str, Any]:
             "member_files": len(member_tomls),
             "team_files": len(team_tomls),
         },
-        "validation": reporter.as_result(),
+        "validation": {"errors": reporter.as_result()["errors"]},
     }
 
 
@@ -185,10 +185,20 @@ def _log_validation_success(ref: str, result: dict[str, Any]) -> None:
         logger.info("Validation completed for ref %s", ref)
         return
 
-    summary = validation.get("summary")
-    if not isinstance(summary, Mapping):
+    errors = validation.get("errors")
+    if not isinstance(errors, Mapping):
         logger.info("Validation completed for ref %s", ref)
         return
+
+    error_count = 0
+    files_with_errors = 0
+    for entries in errors.values():
+        if not isinstance(entries, list):
+            logger.info("Validation completed for ref %s", ref)
+            return
+        if entries:
+            files_with_errors += 1
+        error_count += len(entries)
 
     logger.info(
         "Validation completed for ref %s (%s member files, %s team files, "
@@ -196,8 +206,8 @@ def _log_validation_success(ref: str, result: dict[str, Any]) -> None:
         ref,
         loaded.get("member_files"),
         loaded.get("team_files"),
-        summary.get("error_count"),
-        summary.get("files_with_errors"),
+        error_count,
+        files_with_errors,
     )
 
 
