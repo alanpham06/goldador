@@ -301,19 +301,22 @@
       letter-spacing: -0.05em;
     }
 
-    .section-heading h2 a.heading-anchor {
+    .section-heading h2 a.heading-anchor,
+    .role-card h3 a.heading-anchor {
       color: inherit;
       text-decoration: none;
       border-radius: 0.12em;
     }
 
-    .section-heading h2 a.heading-anchor:hover {
+    .section-heading h2 a.heading-anchor:hover,
+    .role-card h3 a.heading-anchor:hover {
       text-decoration: underline;
       text-decoration-thickness: 0.06em;
       text-underline-offset: 0.12em;
     }
 
-    .section-heading h2 a.heading-anchor:focus-visible {
+    .section-heading h2 a.heading-anchor:focus-visible,
+    .role-card h3 a.heading-anchor:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
@@ -570,7 +573,9 @@
 
         <div class="role-grid">
           <article class="role-card">
-            <h3>Member</h3>
+            <h3 id="member">
+              <a href="#member" class="heading-anchor">Member</a>
+            </h3>
             <ul>
               <li><strong>Member</strong> of the GitHub organization.</li>
               <li>
@@ -581,7 +586,9 @@
           </article>
 
           <article class="role-card">
-            <h3>Team Member</h3>
+            <h3 id="team-member">
+              <a href="#team-member" class="heading-anchor">Team Member</a>
+            </h3>
             <ul>
               <li><strong>Member</strong> of the team’s GitHub team.</li>
               <li>
@@ -598,7 +605,9 @@
           </article>
 
           <article class="role-card">
-            <h3>Team Lead</h3>
+            <h3 id="team-lead">
+              <a href="#team-lead" class="heading-anchor">Team Lead</a>
+            </h3>
             <ul>
               <li>
                 <strong>Member</strong> of the team’s GitHub admin team.
@@ -619,7 +628,9 @@
           </article>
 
           <article class="role-card wide">
-            <h3>Leadership Member</h3>
+            <h3 id="leadership-member">
+              <a href="#leadership-member" class="heading-anchor">Leadership Member</a>
+            </h3>
             <ul>
               <li><strong>Admin</strong> of the GitHub organization.</li>
               <li>
@@ -635,7 +646,9 @@
           </article>
 
           <article class="role-card wide">
-            <h3>Leadership Admins</h3>
+            <h3 id="leadership-admins">
+              <a href="#leadership-admins" class="heading-anchor">Leadership Admins</a>
+            </h3>
             <ul>
               <li>
                 <strong>Manager</strong> of the ScottyLabs Google Group.
