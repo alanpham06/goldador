@@ -467,7 +467,7 @@
 <body>
   <div class="page">
     <nav class="nav" aria-label="Primary navigation">
-      <a class="brand" href="https://scottylabs-labrador.github.io/goldador/" target="_blank" rel="noopener noreferrer">
+      <a class="brand" href="https://goldador.scottylabs.org/" target="_blank" rel="noopener noreferrer">
         <span class="brand-mark" aria-hidden="true">G</span>
         <span>
           <strong class="brand-name">Goldador</strong>
@@ -623,6 +623,10 @@
             <ul>
               <li><strong>Read-only</strong> access to Keycloak.</li>
               <li><strong>Admin</strong> access to secrets in OpenBao.</li>
+              <li>
+                <strong>Content manager</strong> of the ScottyLabs Google
+                Drive.
+              </li>
             </ul>
           </article>
 
@@ -630,10 +634,6 @@
             <h3>Leadership Admins</h3>
             <ul>
               <li><strong>Admin</strong> of the GitHub organization.</li>
-              <li>
-                <strong>Content manager</strong> of the ScottyLabs Google
-                Drive.
-              </li>
               <li>
                 <strong>Manager</strong> of the ScottyLabs Google Group.
               </li>
@@ -666,13 +666,15 @@
                   target="_blank" rel="noopener noreferrer">Keycloak account</a>.
               </li>
               <li>Link your GitHub account to Keycloak.</li>
-              <li>Link your Slack account to Keycloak.</li>
-              <ul>
-                <li>
-                  Make sure you are signed into <a href="https://scottylabs.slack.com" target="_blank"
-                    rel="noopener noreferrer">ScottyLabs Slack</a>.
-                </li>
-              </ul>
+              <li>
+                Link your Slack account to Keycloak.
+                <ul>
+                  <li>
+                    Make sure you are signed into <a href="https://scottylabs.slack.com" target="_blank"
+                      rel="noopener noreferrer">ScottyLabs Slack</a>.
+                  </li>
+                </ul>
+              </li>
             </ul>
           </article>
 
@@ -737,6 +739,16 @@
                 from your fork to the
                 <a href="https://github.com/scottylabs-labrador/goldador/compare" target="_blank"
                   rel="noopener noreferrer">base Goldador repository</a>.
+              </li>
+              <li>
+                Submit the PR from your own GitHub account. PRs that add a member
+                on behalf of someone else are automatically rejected.
+              </li>
+              <li>
+                Make one change per PR: add yourself as a member, or join/create
+                one team &mdash; not both in the same PR. PRs that change more than
+                one file in <code>members/</code> or <code>teams/</code> are
+                automatically rejected.
               </li>
               <li>
                 <a href="https://github.com/scottylabs-labrador/goldador/blob/main/.github/CODEOWNERS" target="_blank"
