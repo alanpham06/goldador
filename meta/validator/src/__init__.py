@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING, cast
 
 import requests
 from dotenv import load_dotenv
+from pydantic import BaseModel, ValidationError
 
 from meta.logger import get_app_logger
 from meta.validator.src.reporter import Reporter
@@ -26,6 +27,17 @@ _CONNECT_TIMEOUT_SECONDS = 30
 
 class ValidatorApiError(RuntimeError):
     """Raised when the hosted validator API cannot return a usable response."""
+
+
+class _LoadedSummary(BaseModel):
+    member_files: int
+    team_files: int
+
+
+class _ValidationLogContext(BaseModel):
+    repository: str
+    ref: str
+    loaded: _LoadedSummary
 
 
 def validate_ref_via_api(ref: str) -> Mapping[str, object]:
@@ -96,7 +108,7 @@ def main() -> None:
         validation = _validation_from_payload(payload)
         reporter = Reporter.from_result(validation)
         _log_validation_context(logger, payload)
-    except (TypeError, ValidatorApiError, ValueError) as e:
+    except (TypeError, ValidatorApiError, ValidationError, ValueError) as e:
         logger.critical("%s", e)
         raise SystemExit(1) from e
 
@@ -127,31 +139,12 @@ def _log_validation_context(
     logger: logging.Logger,
     payload: Mapping[str, object],
 ) -> None:
-    loaded = payload.get("loaded")
-    if not isinstance(loaded, Mapping):
-        msg = "Validator API response is missing object 'loaded'"
-        raise TypeError(msg)
+    context = _ValidationLogContext.model_validate(payload)
 
     logger.info(
         "Validating %s @ %s (%s member files, %s team files)",
-        _string_field(payload, "repository"),
-        _string_field(payload, "ref"),
-        _int_field(loaded, "member_files"),
-        _int_field(loaded, "team_files"),
+        context.repository,
+        context.ref,
+        context.loaded.member_files,
+        context.loaded.team_files,
     )
-
-
-def _string_field(payload: Mapping[str, object], field: str) -> str:
-    value = payload.get(field)
-    if not isinstance(value, str):
-        msg = f"Validator API response field {field!r} must be a string"
-        raise TypeError(msg)
-    return value
-
-
-def _int_field(payload: Mapping[str, object], field: str) -> int:
-    value = payload.get(field)
-    if not isinstance(value, int) or isinstance(value, bool):
-        msg = f"Validator API response field {field!r} must be an integer"
-        raise TypeError(msg)
-    return value
