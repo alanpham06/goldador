@@ -121,7 +121,7 @@ def run_validation_for_ref(ref: str) -> dict[str, Any]:
     """Fetch TOML from GitHub at ``ref`` and return structured validation results."""
     reporter = Reporter()
     record = bind_reporter(reporter)
-    member_tomls, team_tomls = fetch_goldador_toml_at_ref(ref)
+    member_tomls, team_tomls = fetch_goldador_toml_at_ref(ref, record=record)
     members = load_members(record, file_contents=member_tomls)
     MemberValidator(members, reporter).validate()
 
